@@ -42,7 +42,7 @@ userSchema.methods.generateAuthToken = function(){
 
 
 // method function to compare password
-userSchema.methods.comparePasssword = async function(password){
+userSchema.methods.comparePassword = async function(password){
     return await bcrypt.compare(password,this.password);
 }
 
@@ -55,4 +55,4 @@ userSchema.statics.hashPassword = async function (password) {
 
 const userModel = mongoose.model('user', userSchema);
 
-module.exports = userModel;
+module.exports = {userModel};
