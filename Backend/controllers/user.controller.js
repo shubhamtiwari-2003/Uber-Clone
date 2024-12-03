@@ -52,10 +52,16 @@ module.exports.loginUser = async(req,res,next)=>{
     if(!isMatch){
         return res.status(401).json({message:'Invalid Email or Password' });
     }
-
+    
+    
     const token = user.generateAuthToken();
-
+    res.cookie('token', token);
+    
     res.status(200).json({token, user});
+}
 
 
+module.exports.getUserProfile = async (req,res,next)=>{
+
+    res.status(200).json(req.user);
 }
