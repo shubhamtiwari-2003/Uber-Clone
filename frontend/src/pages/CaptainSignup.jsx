@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { CaptainDataContext } from "../context/CaptainContext";
+import axios from "axios";
+  
 
 const CaptainSignup = () => {
   const [captainData, setCaptainData] = useState({
@@ -19,6 +22,7 @@ const CaptainSignup = () => {
   });
 
   const navigate = useNavigate();
+  const [captain, setCaptain]  = useContext(CaptainDataContext)
 
   function changeHandler(event){
     const {name,value} = event.target;
@@ -48,9 +52,21 @@ const CaptainSignup = () => {
     });
   }
 
-  function submitHandler(event) {
+  async function submitHandler(event) {
     event.preventDefault();
-    console.log(captainData);
+
+    // to log form data for checking
+    // console.log(captainData);
+
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`, captainData);
+
+    if(response.status === 201 ){
+      const data = response.data;
+      setCaptain(data.captain);
+      localStorage.setItem('token',data.token);
+      navigate('/captain-home');
+    }
+
     setCaptainData({
       fullname:{
         firstname: "",
@@ -178,16 +194,19 @@ const CaptainSignup = () => {
               </div>
               <div>
                 <h5 className="text-sm font-semibold mb-1">Vehicle Type </h5>
-                <input
+                <select
                   className="rounded-md border-2 px-4 py-1 w-32  mb-3 bg-[#eeeeee] placeholder:text-xs "
                   required
-                  type="text"
                   id="type"
                   name="vehicleType"
                   onChange={changeHandler}
                   value={captainData.vehicle.vehicleType}
-                  placeholder="eg: car"
-                />
+                >
+                  <option value="" disabled> Select</option>
+                  <option value="car" > Car</option>
+                  <option value="auto" > Auto</option>
+                  <option value="Motorcycle" > MotorCycle</option>
+                </select>
               </div>
             </div>
           </div>

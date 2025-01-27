@@ -30,8 +30,6 @@ const UserLogin = () => {
       setUser(data.user);
       localStorage.setItem("token", data.token);
       navigate("/home");
-      console.log(userData);
-      console.log(data);
     }
   }
 
@@ -83,9 +81,9 @@ const UserLogin = () => {
           <button className="rounded-md border-2 px-4 py-2 w-full font-semibold mb-1 bg-black text-white ">
             Login
           </button>
-          <p className="text-center ">
+          <p className="text-center m-5 ">
             New here?{" "}
-            <Link to="/signup" className=" text-blue-600 py-2 font-light">
+            <Link to="/signup" className=" text-blue-600 py-5 font-light">
               Create New Account
             </Link>
           </p>

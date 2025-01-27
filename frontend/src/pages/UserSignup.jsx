@@ -127,7 +127,7 @@ async function submitHandler(event) {
           <button className="rounded-md border-2 px-4 py-1 w-full font-semibold mb-1 bg-black text-white ">
             Create Account
           </button>
-          <p className="text-center ">Already Have an Account? <Link to='/login' className = " text-blue-600 py-2 font-light">Login Here</Link></p>
+          <p className="text-center  my-5">Already Have an Account? <Link to='/login' className = " text-blue-600 py-2 font-light">Login Here</Link></p>
         </form>
       </div>
       <div>

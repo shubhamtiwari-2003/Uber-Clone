@@ -1,11 +1,26 @@
 import React from 'react'
 import { createContext, useState, useContext } from 'react';
 
-const CaptainDataContext = createContext();
+export const CaptainDataContext = createContext();
 
-const CaptainContext = () => {
+const CaptainContext = ({children}) => {
+
+  const [captain, setCaptain] = useState(null);
+  const updateCaptain = (captainData) =>{
+    setCaptain(captainData);
+  }
+
+  const value = [
+    captain,
+    setCaptain,
+    updateCaptain
+  ]
   return (
-    <div>CaptainContext</div>
+    <div>
+      <CaptainDataContext.Provider value={value}>
+        {children}
+      </CaptainDataContext.Provider>
+    </div>
   )
 }
 
