@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { UserDataContext } from '../context/UserContext';
+import axios from 'axios';
 
 const UserSignup = () => {
 
@@ -16,23 +16,12 @@ const UserSignup = () => {
   })
   
 const navigate =useNavigate();
-const [user,setUser]=useContext(UserDataContext);
+const {user,setUser}=useContext(UserDataContext);
 
 
 async function submitHandler(event) {
   event.preventDefault();
-   
-
   const response =await axios.post(`${import.meta.env.VITE_BASE_URL}/users/register`,userData)
-  setUserData({
-    fullname:{
-      firstname:"",
-      lastname:"",
-    },
-    email:"",
-    password:"",
-  })
-
   if(response.status===201){
     const data = response.data;
     setUser(data.user);
@@ -68,7 +57,7 @@ async function submitHandler(event) {
 
 
   return (
-    <div className=" flex h-[90vh] justify-between mt-4 flex-col mx-8 md:w-[40vw] md:m-auto md:h-[100vh] md:flex">
+    <div className=" flex h-[90vh] justify-between mt-4 flex-col mx-8 p-5 md:w-[40vw] md:m-auto md:h-[100vh] md:flex">
       <div>
         <img
           className="w-16 my-6 pt-2" onClick={()=>{navigate('/')}}

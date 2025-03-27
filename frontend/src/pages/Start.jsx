@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Start = () => {
   return (
-    <div className="md:max-w-[40vw] md:m-auto ">
+    <div className=" w-full ">
       <div className=" bg-cover bg-bottom bg-[url(/images/lerone-pieters-j7bGmTSn1nA-unsplash.jpg)] h-screen w-full flex justify-between flex-col pt-8 ">
         <img
           className="w-24 pl-8 pt-5"

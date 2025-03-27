@@ -1,4 +1,4 @@
-const { userModel } = require("../models/user.model");
+const userModel  = require("../models/user.model");
 
 //a function will take input from routes and will store it in variables
 module.exports.createUser = async ({

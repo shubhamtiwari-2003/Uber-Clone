@@ -9,7 +9,7 @@ const UserLogin = () => {
     password: "",
   });
 
-  const [user, setUser] = useContext(UserDataContext);
+  const {user, setUser} = useContext(UserDataContext);
 
   const navigate = useNavigate();
 
@@ -28,6 +28,7 @@ const UserLogin = () => {
     if (response.status === 200) {
       const data = response.data;
       setUser(data.user);
+      // console.log(user);
       localStorage.setItem("token", data.token);
       navigate("/home");
     }
@@ -44,7 +45,7 @@ const UserLogin = () => {
   }
 
   return (
-    <div className=" flex h-[90vh] justify-between mt-4 flex-col mx-8 md:w-[40vw] md:m-auto md:h-[100vh] md:flex">
+    <div className=" flex h-[90vh] justify-between mt-4 flex-col mx-8 p-5 md:w-[40vw] md:m-auto md:h-[100vh] md:flex">
       <div>
         <img
           className="w-16 my-6 pt-2"

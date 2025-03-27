@@ -1,4 +1,4 @@
-const {userModel} = require('../models/user.model');
+const userModel = require('../models/user.model');
 const captainModel = require('../models/captain.model');
 const blacklistTokenModel= require('../models/blacklistToken.model');
 const bcrypt = require("bcrypt");

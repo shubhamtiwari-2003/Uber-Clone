@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { CaptainDataContext } from "../context/CaptainContext";
+import axios from "axios";
 
 const CaptainLogin = () => {
   const [captainData, setCaptainData] = useState({
@@ -9,8 +9,33 @@ const CaptainLogin = () => {
     password: "",
   });
 
+  const { setCaptain } = useContext(CaptainDataContext);
   const navigate = useNavigate();
-  const [ captain, setCaptain ] = useContext(CaptainDataContext);
+
+  async function submitHandler(event) {
+    event.preventDefault();
+    const response = await axios.post(
+      `${import.meta.env.VITE_BASE_URL}/captains/login`,
+      captainData
+    );
+
+    if (response.status === 200) {
+      const data = response.data;
+      setCaptain(data.captain);
+      // console.log('Captain: ',captain);
+      localStorage.setItem("token", data.token);
+      // Delay navigation until state is updated
+      setTimeout(() => {
+        navigate("/captain-home");
+      }, 100);
+    }
+    
+    setCaptainData({
+      email: "",
+      password: "",
+    });
+
+  }
 
   function changeHandler(event) {
     const { name, value } = event.target;
@@ -22,28 +47,8 @@ const CaptainLogin = () => {
     });
   }
 
-  async function submitHandler(event) {
-    event.preventDefault();
-
-    const response = await axios.post(
-      `${import.meta.env.VITE_BASE_URL}/captains/login`,
-      captainData
-    );
-    if (response.status === 200) {
-      const data = response.data;
-      setCaptain(data.captain);
-      localStorage.setItem("token", data.token);
-      navigate("/captain-home");
-    }
-
-    setCaptainData({
-      email: "",
-      password: "",
-    });
-  }
-
   return (
-    <div className=" flex h-[90vh] justify-between mt-4 flex-col mx-8 md:w-[40vw] md:m-auto md:h-[100vh] md:flex">
+    <div className=" flex h-[90vh] justify-between mt-4 p-5 flex-col mx-8 md:w-[40vw] md:m-auto md:h-[100vh] md:flex">
       <div>
         <img
           className="w-16 mt-2 pt-1"
@@ -80,7 +85,7 @@ const CaptainLogin = () => {
           <button className="rounded-md border-2 px-4 py-2 w-full font-semibold mb-1 bg-black text-white ">
             Login
           </button>
-          <p className="text-center ">
+          <p className="text-center mt-6 ">
             New here?{" "}
             <Link
               to="/captain-signup"
@@ -94,9 +99,9 @@ const CaptainLogin = () => {
       <div>
         <Link
           to={"/login"}
-          className=" inline-block w-full bg-green-800 text-center text-white py-2 px-6  rounded-md md:mb-20"
+          className=" inline-block w-full bg-orange-600 text-center text-white py-2 px-6  rounded-md md:mb-20"
         >
-          Sign in As Rider
+          Sign in As User
         </Link>
       </div>
     </div>

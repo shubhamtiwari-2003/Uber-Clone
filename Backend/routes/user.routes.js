@@ -17,6 +17,7 @@ router.post(
   ],
   userController.registerUser
 );
+
 router.post("/login", [
   body("email").isEmail().withMessage("Invalid Email"),
   body("password")
@@ -25,6 +26,7 @@ router.post("/login", [
 ],
 userController.loginUser
 );
+
 router.get("/profile", authMiddleware.authUser, userController.getUserProfile);
 router.get('/logout', authMiddleware.authUser, userController.logoutUser)
 

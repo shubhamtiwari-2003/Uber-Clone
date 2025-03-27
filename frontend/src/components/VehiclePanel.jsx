@@ -1,6 +1,6 @@
 import React from "react";
 
-const VehiclePanel = ({ setVehiclePanel, setConfirmRidePanelOpen }) => {
+const VehiclePanel = ({setVehicleType, fare, setVehiclePanel, setConfirmRidePanelOpen }) => {
   return (
     <div>
       <h5
@@ -16,6 +16,7 @@ const VehiclePanel = ({ setVehiclePanel, setConfirmRidePanelOpen }) => {
         onClick={() => {
           setConfirmRidePanelOpen(true);
           setVehiclePanel(false);
+          setVehicleType('car');
         }}
         className="flex p-2 w-full items-center  justify-between border-2 active:border-black rounded-xl mb-3 "
       >
@@ -34,12 +35,14 @@ const VehiclePanel = ({ setVehiclePanel, setConfirmRidePanelOpen }) => {
           <h5 className="font-normal text-sm -mt-1">2 mins away </h5>
           <p className="text-xs text-gray-500">Affordable,Compact rides </p>
         </div>
-        <h2 className="text-medium font-medium">₹196.20</h2>
+        <h2 className="text-medium font-bold">₹ {fare.car}</h2>
       </div>
+
       <div
         onClick={() => {
           setConfirmRidePanelOpen(true);
           setVehiclePanel(false);
+          setVehicleType('moto');
         }}
         className="flex py-2  w-full items-center  justify-between border-2 active:border-black rounded-xl mb-3 "
       >
@@ -58,12 +61,14 @@ const VehiclePanel = ({ setVehiclePanel, setConfirmRidePanelOpen }) => {
           <h5 className="font-normal text-sm -mt-1">2 mins away </h5>
           <p className="text-xs text-gray-500">Affordable motorcycle rides </p>
         </div>
-        <h2 className="text-medium font-medium pr-2">₹66.17</h2>
+        <h2 className="text-medium font-bold pr-2">₹ {fare.moto}</h2>
       </div>
+
       <div
         onClick={() => {
           setConfirmRidePanelOpen(true);
           setVehiclePanel(false);
+          setVehicleType('auto');
         }}
         className="flex p-2 w-full items-center  justify-between border-2 active:border-black rounded-xl mb-3 "
       >
@@ -82,7 +87,7 @@ const VehiclePanel = ({ setVehiclePanel, setConfirmRidePanelOpen }) => {
           <h5 className="font-normal text-sm -mt-1">2 mins away </h5>
           <p className="text-xs text-gray-500">Affordable,Compact rides </p>
         </div>
-        <h2 className="text-medium font-medium">₹118.20</h2>
+        <h2 className="text-medium font-bold">₹ {fare.auto}</h2>
       </div>
     </div>
   );
