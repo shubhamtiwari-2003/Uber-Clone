@@ -7,7 +7,7 @@ let io;
 const initializeSocket = (server) => {
   io = socketIo(server, {
     cors: {
-      origin: "*",
+      origin: "*, https://uber-clone-git-7f3845-shubhamtiwari-21521-aitpuneedus-projects.vercel.app/",
       methods: ["GET", "POST"]
     }
   });
